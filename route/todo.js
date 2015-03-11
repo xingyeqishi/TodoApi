@@ -4,7 +4,7 @@ var uuid = require('uuid');
 var Todo = require('../model/todo');
 
 router.post('/save', function(req, res) {
-    var data = res.body;
+    var data = req.body;
     var newTodo = Todo({
         id: uuid.v1(),
         content: data.data,
@@ -24,7 +24,7 @@ router.get('/list', function(req, res) {
 });
 
 router.post('/delete', function(req, res) {
-    var data = res.body;
+    var data = req.body;
     Todo.find({id: data.id}, function(err, todo) {
         if (err) throw err;
         todo.remove(function(err) {

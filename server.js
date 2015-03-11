@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var userRouter = require('./route/user');
 var todoRouter = require('./route/todo');
 
-mongoose.connect('mongodb://localhost/sfb');
+mongoose.connect('mongodb://localhost/todo');
 module.exports = function createServer(app) {
     initMiddleware(app);
 
