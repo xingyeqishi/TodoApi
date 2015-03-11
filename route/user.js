@@ -22,14 +22,21 @@ router.post('/save', function(req, res) {
     if (data.pwd != data.pwd2) {
         res.status(200).json({status: 201, msg: '两次输入密码不匹配'});
     } else {
-        var newUser = User({
-            id: uuid.v1(),
-            name: data.name,
-            pwd: data.pwd
-        });
-        newUser.save(function(err) {
+        User.findOne({name: data.name}, function(err, user) {
             if (err) throw err;
-            res.status(200).json({status: 200});
+            if (user) {
+                res.status(200).json({status: 201, msg: '用户名已存在'});
+            } else {
+                var newUser = User({
+                    id: uuid.v1(),
+                    name: data.name,
+                    pwd: data.pwd
+                });
+                newUser.save(function(err) {
+                    if (err) throw err;
+                    res.status(200).json({status: 200});
+                });
+            }
         });
     }
 });
