@@ -4,7 +4,7 @@ var schema = mongoose.Schema;
 var userSchema = new Schema({
     id: {type: String, required: true, unique: true},
     name: String,
-    email: String,
+    pwd: String,
     created_at: Date
 }, {autoIndex: true});
 
