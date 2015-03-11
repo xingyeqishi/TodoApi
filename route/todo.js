@@ -7,8 +7,8 @@ router.post('/save', function(req, res) {
     var data = req.body;
     var newTodo = Todo({
         id: uuid.v1(),
-        content: data.data,
-        userid: data.userid
+        content: data.content,
+        userid: data.uid
     });
     newTodo.save(function(err) {
         if (err) throw err;
