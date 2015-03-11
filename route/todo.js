@@ -17,7 +17,8 @@ router.post('/save', function(req, res) {
 });
 
 router.get('/list', function(req, res) {
-    Todo.find({}, function(err, todos) {
+    var data = req.body;
+    Todo.find({userid: data.uid}, function(err, todos) {
         if (err) throw err;
         res.status(200).json({status:200, data:todos});
     });
