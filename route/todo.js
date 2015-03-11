@@ -5,11 +5,11 @@ var Todo = require('../model/todo');
 
 router.post('/save', function(req, res) {
     var data = res.body;
-    var newTodo = Todo(
+    var newTodo = Todo({
         id: uuid.v1(),
         content: data.data,
         userid: data.userid
-    );
+    });
     newTodo.save(function(err) {
         if (err) throw err;
         res.status(200).json({status: 200});
