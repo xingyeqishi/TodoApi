@@ -5,9 +5,10 @@ var User = require('../model/user');
 
 router.post('/auth', function(req, res) {
     var data = req.body;
-    User.find({name: data.name, pwd: data.pwd}, function(err, user) {
+    User.find({name: data.name}, function(err, user) {
         if (err) throw err;
-        if (user.name == data.name) {
+        user = user[0];
+        if (user.pwd == data.pwd) {
             res.status(200).json({status: 200, data: user});
         } else {
             res.status(200).json({status: 201, msg: '用户名密码错误'});
