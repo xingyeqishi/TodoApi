@@ -16,8 +16,8 @@ router.post('/save', function(req, res) {
     });
 });
 
-router.get('/list?uid=:uid', function(req, res) {
-    var uid = req.params.uid;
+router.get('/list', function(req, res) {
+    var uid = req.query.uid;
     Todo.find({userid: uid}, function(err, todos) {
         if (err) throw err;
         res.status(200).json({status:200, data:todos});
