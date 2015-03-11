@@ -8,7 +8,7 @@ router.post('/auth', function(req, res) {
     User.find({name: data.name}, function(err, user) {
         if (err) throw err;
         user = user[0];
-        if (user.pwd == data.pwd) {
+        if (user && user.pwd == data.pwd) {
             res.status(200).json({status: 200, data: user});
         } else {
             res.status(200).json({status: 201, msg: '用户名密码错误'});
