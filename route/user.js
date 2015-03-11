@@ -34,7 +34,7 @@ router.post('/save', function(req, res) {
                 });
                 newUser.save(function(err) {
                     if (err) throw err;
-                    res.status(200).json({status: 200});
+                    res.status(200).json({status: 200, data: id});
                 });
             }
         });
