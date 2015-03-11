@@ -27,8 +27,9 @@ router.post('/save', function(req, res) {
             if (user) {
                 res.status(200).json({status: 201, msg: '用户名已存在'});
             } else {
+                var id = uuid.v1();
                 var newUser = User({
-                    id: uuid.v1(),
+                    id: id,
                     name: data.name,
                     pwd: data.pwd
                 });
