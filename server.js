@@ -1,5 +1,6 @@
 /*jshint node:true */
 var express = require('express'),
+    ecstatic = require('ecstatic'),
     bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
@@ -18,9 +19,10 @@ module.exports = function createServer(app) {
  */
 function initMiddleware(app) {
     // parse application/x-www-form-urlencoded
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     // parse application/json
     app.use(bodyParser.json());
+    app.use(ecstatic({ root: __dirname + '/public' }));
     app.get('/', function(req, res) {
         res.send('hi');
     });
